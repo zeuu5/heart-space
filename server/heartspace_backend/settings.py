@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
@@ -52,14 +53,16 @@ TEMPLATES = [
 WSGI_APPLICATION = "heartspace_backend.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("PGDATABASE", "heartspace"),
-        "USER": os.getenv("PGUSER", "postgres"),
-        "PASSWORD": os.getenv("PGPASSWORD", ""),
-        "HOST": os.getenv("PGHOST", "localhost"),
-        "PORT": os.getenv("PGPORT", "5432"),
-    }
+    "default": dj_database_url.config(
+        default=(
+            f"postgresql://{os.getenv('PGUSER', 'postgres')}:"
+            f"{os.getenv('PGPASSWORD', '')}@"
+            f"{os.getenv('PGHOST', 'localhost')}:"
+            f"{os.getenv('PGPORT', '5432')}/"
+            f"{os.getenv('PGDATABASE', 'heartspace')}"
+        ),
+        conn_max_age=600,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = []
