@@ -110,6 +110,14 @@ function setStatus(message, isError = false) {
   statusEl.className = `status${isError ? " error" : ""}`;
 }
 
+async function ensureCsrfCookie() {
+  try {
+    await fetch(`${API_BASE}/api/csrf`, { credentials: "same-origin" });
+  } catch (error) {
+    console.error("Failed to set CSRF cookie:", error.message);
+  }
+}
+
 function isRateLimited() {
   const now = Date.now();
   const windowMs = 60 * 1000;
@@ -215,6 +223,7 @@ jumpToWall.addEventListener("click", () => {
   document.getElementById("wallPanel").scrollIntoView({ behavior: "smooth" });
 });
 
+ensureCsrfCookie();
 fetchNotes();
 subscribeToRealtime();
 loadDraft();

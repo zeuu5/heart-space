@@ -16,6 +16,11 @@ def index(_request):
     return FileResponse(open(ROOT_DIR / "index.html", "rb"))
 
 
+@ensure_csrf_cookie
+def csrf_token_view(_request):
+    return JsonResponse({"ok": True})
+
+
 def serialize_note(note):
     return {
         "id": note.id,
