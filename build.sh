@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit
 
-pip install -r server/requirements.txt
-python server/manage.py collectstatic --noinput
+cd server
+pip install -r requirements.txt
+python manage.py collectstatic --noinput
