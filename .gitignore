@@ -1,0 +1,9 @@
+.env
+server/.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+server/staticfiles/

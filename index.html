@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heartspace - Anonymous Valentine Notes</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-badge">Valentine's Anonymous Wall</div>
+      <h1>Heartspace</h1>
+      <p class="hero-sub">
+        A gentle space to share your feelings, hopes, and unsent notes -
+        no names, no logins, just kindness.
+      </p>
+      <div class="hero-cta">
+        <button class="cta" id="jumpToForm">Share a Note</button>
+        <button class="ghost" id="jumpToWall">Read the Wall</button>
+      </div>
+    </header>
+
+    <section class="panel" id="formPanel">
+      <div class="panel-header">
+        <h2>Leave an anonymous note</h2>
+        <p>Be kind. No personal info. Keep it heartfelt.</p>
+      </div>
+      <form id="noteForm">
+        <label class="field">
+          <span>Your message</span>
+          <textarea id="noteBody" maxlength="280" placeholder="Dear you, I never said..." required></textarea>
+          <div class="meta">
+            <span id="charCount">0/280</span>
+            <span class="meta-right">Anonymous by design</span>
+          </div>
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="cta" id="submitBtn">Post to the wall</button>
+          <button type="button" class="ghost" id="clearDraft">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="wall" id="wallPanel">
+      <div class="panel-header">
+        <h2>Today's wall</h2>
+        <p>Real notes from real hearts. New notes appear after posting.</p>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <div id="wall" class="wall-grid"></div>
+      <div id="emptyState" class="empty">No notes yet. Be the first to share.</div>
+    </section>
+
+    <section class="panel about">
+      <h3>About this space</h3>
+      <p>
+        This is a simple, anonymous community wall. Notes are stored in a shared
+        database so everyone can see them. Please avoid personal information and
+        keep it kind.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <span>Made with care for Valentine's season.</span>
+      <span class="dot">-</span>
+      <span>Kindness first.</span>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
