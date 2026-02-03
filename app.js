@@ -68,7 +68,9 @@ function renderNotes(notes) {
 async function fetchNotes() {
   setStatus("Loading notes...");
   try {
-    const response = await fetch(`${API_BASE}/api/notes`);
+    const response = await fetch(`${API_BASE}/api/notes`, {
+      credentials: "same-origin"
+    });
     if (!response.ok) {
       throw new Error(`Server responded ${response.status}`);
     }
@@ -173,6 +175,7 @@ form.addEventListener("submit", async (event) => {
         "Content-Type": "application/json",
         "X-CSRFToken": csrfToken
       },
+      credentials: "same-origin",
       body: JSON.stringify({ text })
     });
 
